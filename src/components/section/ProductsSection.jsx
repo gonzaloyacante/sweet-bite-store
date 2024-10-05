@@ -1,24 +1,18 @@
-import { Flex, Grid } from "@chakra-ui/react";
+import { Grid } from "@chakra-ui/react";
 import { ProductCard } from "../ui/ProductCard";
 import { products } from "../../data/products";
 
 export const ProductsSection = () => {
   return (
-    <Flex
-      justifyContent="space-around"
-      alignItems="center"
-      wrap="wrap"
+    <Grid
+      templateColumns="repeat(auto-fit, minmax(150px, 1fr))"
+      m={4}
       gap={4}
-      m={4}>
-      <Grid
-        templateColumns="repeat(1, 1fr)"
-        gap={6}
-        alignItems="center"
-        justifyContent="center">
-        {products.map((product) => (
-          <ProductCard key={product.id} {...product} />
-        ))}
-      </Grid>
-    </Flex>
+      alignItems="start"
+      justifyContent="center">
+      {products.map((product) => (
+        <ProductCard key={product.id} {...product} />
+      ))}
+    </Grid>
   );
 };

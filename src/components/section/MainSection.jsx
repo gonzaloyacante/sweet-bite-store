@@ -25,7 +25,7 @@ export const MainSection = () => {
       </Box>
 
       <Image
-        src="https://picsum.photos/300/300"
+        src="https://i.ibb.co/nCMRzds/sweet-pastry-assortment-top-view.jpg"
         alt="Imagen principal"
         borderRadius="xl"
         w="100%"

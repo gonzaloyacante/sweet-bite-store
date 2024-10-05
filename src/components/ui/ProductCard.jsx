@@ -18,21 +18,27 @@ export const ProductCard = ({ name, description, price, image }) => {
       overflow="hidden"
       bg="pink.100"
       boxShadow="md"
-      border="none">
-      <Image src={image} alt={name} height="200" width="300" />
-
+      border="none"
+      height="100%"
+    >
+      <Image
+        src={image}
+        alt={name}
+        height={{ base: "150px", md: "200px" }}
+        width="100%"
+        objectFit="cover"
+      />
       <CardBody p={3}>
         <Text
           as="h3"
-          fontSize="xl"
+          fontSize={{ base: "lg", md: "xl" }}
           color="pink.700"
           fontWeight="semibold"
           lineHeight="tight"
           isTruncated>
           {name}
         </Text>
-
-        <Text mt={2} color="pink.500">
+        <Text mt={2} color="pink.500" fontSize={{ base: "sm", md: "md" }}>
           {description}
         </Text>
       </CardBody>
@@ -41,13 +47,16 @@ export const ProductCard = ({ name, description, price, image }) => {
         p={3}
         justifyContent="space-between"
         alignItems="center">
-        <Text fontWeight="bold" fontSize="xl" color="pink.700">
+        <Text
+          fontWeight="bold"
+          fontSize={{ base: "lg", md: "xl" }}
+          color="pink.700">
           ${price.toFixed(2)}
         </Text>
         <IconButton
           variant="outline"
           colorScheme="primary"
-          aria-label="Call Sage"
+          aria-label="Agregar al carrito"
           fontSize="20px"
           icon={<FaCartShopping />}
         />
