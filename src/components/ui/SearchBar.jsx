@@ -5,7 +5,7 @@ import {
   Select,
   Box,
 } from "@chakra-ui/react";
-import { FaSearchengin } from "react-icons/fa6";
+import { RiMenuSearchLine } from "react-icons/ri";
 import PropTypes from "prop-types";
 
 export const SearchBar = ({
@@ -18,7 +18,7 @@ export const SearchBar = ({
     <Box m={4}>
       <InputGroup mb={4}>
         <InputLeftElement pointerEvents="none">
-          <FaSearchengin color="gray.400" />
+          <RiMenuSearchLine color="gray.400" />
         </InputLeftElement>
         <Input
           placeholder="Buscar productos..."
