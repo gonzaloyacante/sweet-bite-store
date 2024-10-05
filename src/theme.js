@@ -10,6 +10,7 @@ const theme = extendTheme({
     },
     background: {
       light: "#FFF9E6",
+      dark: "#F5F5F5",
     },
     text: {
       main: "#333333",
@@ -22,9 +23,33 @@ const theme = extendTheme({
   styles: {
     global: {
       body: {
-        bg: "#FFF9E6",
-        color: "#333333",
+        bg: "background.light",
+        color: "text.main",
         fontFamily: "'Poppins', sans-serif",
+      },
+    },
+  },
+  components: {
+    Button: {
+      baseStyle: {
+        borderRadius: "md",
+        fontWeight: "bold",
+      },
+      variants: {
+        solid: {
+          bg: "primary.500",
+          color: "white",
+          _hover: {
+            bg: "primary.600",
+          },
+        },
+        outline: {
+          borderColor: "pink.500",
+          color: "pink.500",
+          _hover: {
+            bg: "pink.100",
+          },
+        },
       },
     },
   },

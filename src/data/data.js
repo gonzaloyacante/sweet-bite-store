@@ -1,3 +1,9 @@
+export const offers = [
+    { title: '2x1 en Cupcakes', description: 'Todos los martes' },
+    { title: '20% desc. en Tartas', description: 'Código: TARTA20' },
+    { title: 'Envío gratis', description: 'En pedidos +$50' }
+  ];
+
 export const customCakes = [
   {
     id: 1,

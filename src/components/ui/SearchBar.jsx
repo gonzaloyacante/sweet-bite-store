@@ -4,6 +4,7 @@ import {
   InputLeftElement,
   Select,
   Box,
+  Icon,
 } from "@chakra-ui/react";
 import { RiMenuSearchLine } from "react-icons/ri";
 import PropTypes from "prop-types";
@@ -16,9 +17,9 @@ export const SearchBar = ({
 }) => {
   return (
     <Box m={4}>
-      <InputGroup mb={4}>
+      <InputGroup mb={4} boxShadow="md" borderRadius="lg">
         <InputLeftElement pointerEvents="none">
-          <RiMenuSearchLine color="gray.400" />
+          <Icon as={RiMenuSearchLine} color="pink.500" />
         </InputLeftElement>
         <Input
           placeholder="Buscar productos..."
@@ -28,6 +29,9 @@ export const SearchBar = ({
       </InputGroup>
 
       <Select
+        color="pink.500"
+        borderRadius="lg"
+        boxShadow="md"
         placeholder="Ordenar por..."
         value={sortOption}
         onChange={(e) => setSortOption(e.target.value)}>

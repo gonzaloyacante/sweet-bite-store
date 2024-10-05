@@ -92,7 +92,7 @@ export const Header = () => {
         </Flex>
       </Flex>
       <ScaleFade in={isOpen} unmountOnExit>
-        {shouldRenderMenu && ( // Condiciona la renderización del menú
+        {shouldRenderMenu && (
           <Flex
             p={4}
             mt="14px"
