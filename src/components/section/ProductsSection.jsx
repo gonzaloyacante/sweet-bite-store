@@ -6,14 +6,31 @@ import { products } from "../../data/data";
 
 export const ProductsSection = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortOption, setSortOption] = useState("");
 
-  const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredProducts = products
+    .filter((product) =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    .sort((a, b) => {
+      const sortMethods = {
+        name: (a, b) => a.name.localeCompare(b.name),
+        // category: (a, b) => a.category.localeCompare(b.category),
+        "price-asc": (a, b) => a.price - b.price,
+        "price-desc": (a, b) => b.price - a.price,
+      };
+
+      return sortMethods[sortOption] ? sortMethods[sortOption](a, b) : 0;
+    });
 
   return (
     <Box>
-      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+      <SearchBar
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        sortOption={sortOption}
+        setSortOption={setSortOption}
+      />
       <Grid
         templateColumns="repeat(auto-fit, minmax(150px, 1fr))"
         m={4}

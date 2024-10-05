@@ -19,8 +19,7 @@ export const ProductCard = ({ name, description, price, image }) => {
       bg="pink.100"
       boxShadow="md"
       border="none"
-      height="100%"
-    >
+      height="100%">
       <Image
         src={image}
         alt={name}
@@ -58,7 +57,7 @@ export const ProductCard = ({ name, description, price, image }) => {
           colorScheme="primary"
           aria-label="Agregar al carrito"
           fontSize="20px"
-          icon={<FaCartShopping />}
+          icon={<FaCartShopping color="pink.700" />}
         />
       </CardFooter>
     </Card>
