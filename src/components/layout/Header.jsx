@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { FaCartShopping, FaHeart, FaBars, FaXmark } from "react-icons/fa6";
 import {
   Box,
@@ -7,10 +8,26 @@ import {
   Heading,
   useDisclosure,
   ScaleFade,
+  Image,
 } from "@chakra-ui/react";
+
+import logo from "../../assets/cake-logo.png";
 
 export const Header = () => {
   const { isOpen, onToggle } = useDisclosure();
+  const [shouldRenderMenu, setShouldRenderMenu] = useState(isOpen);
+
+  useEffect(() => {
+    if (isOpen) {
+      setShouldRenderMenu(true);
+    } else {
+      const timer = setTimeout(() => {
+        setShouldRenderMenu(false);
+      }, 300);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
 
   return (
     <Box
@@ -26,8 +43,13 @@ export const Header = () => {
         align="center"
         mx="auto"
         maxW="container.lg">
-        <Heading as="h1" size="lg" color="pink.700">
-          Dulce Rosa
+        <Heading
+          as="h1"
+          size="lg"
+          color="pink.700"
+          display="flex"
+          alignItems="center">
+          <Image src={logo} alt="Logo" boxSize="36px" mr={4} /> Sweet Bite
         </Heading>
         <Flex display={{ base: "none", md: "flex" }} spacing={4}>
           <Button variant="ghost" color="pink.700">
@@ -69,32 +91,33 @@ export const Header = () => {
           />
         </Flex>
       </Flex>
-      <ScaleFade in={isOpen} style={{ zIndex: -1 }}>
-        <Flex
-          p={4}
-          mt="14px"
-          direction="column"
-          spacing={2}
-          display={{ base: "flex", md: "none" }}
-          bg="pink.100"
-          rounded="md"
-          shadow="md">
-          <Button variant="ghost" color="pink.700">
-            Inicio
-          </Button>
-          <Button variant="ghost" color="pink.700">
-            Productos
-          </Button>
-          <Button variant="ghost" color="pink.700">
-            Personalizados
-          </Button>
-          <Button variant="ghost" color="pink.700">
-            Eventos
-          </Button>
-          <Button variant="ghost" color="pink.700">
-            Contacto
-          </Button>
-        </Flex>
+      <ScaleFade in={isOpen} unmountOnExit>
+        {shouldRenderMenu && ( // Condiciona la renderización del menú
+          <Flex
+            p={4}
+            mt="14px"
+            direction="column"
+            spacing={2}
+            bg="pink.100"
+            rounded="md"
+            shadow="md">
+            <Button variant="ghost" color="pink.700">
+              Inicio
+            </Button>
+            <Button variant="ghost" color="pink.700">
+              Productos
+            </Button>
+            <Button variant="ghost" color="pink.700">
+              Personalizados
+            </Button>
+            <Button variant="ghost" color="pink.700">
+              Eventos
+            </Button>
+            <Button variant="ghost" color="pink.700">
+              Contacto
+            </Button>
+          </Flex>
+        )}
       </ScaleFade>
     </Box>
   );
