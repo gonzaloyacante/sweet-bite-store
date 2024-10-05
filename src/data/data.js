@@ -1,3 +1,56 @@
+export const customCakes = [
+  {
+    id: 1,
+    name: "Boda Elegante",
+    image: "https://picsum.photos/300/200?random=1",
+  },
+  {
+    id: 2,
+    name: "Cumpleaños",
+    image: "https://picsum.photos/300/200?random=2",
+  },
+  {
+    id: 3,
+    name: "Aniversario",
+    image: "https://picsum.photos/300/200?random=3",
+  },
+  {
+    id: 4,
+    name: "Fresa con Nata",
+    image: "https://picsum.photos/300/200?random=4",
+  },
+  {
+    id: 5,
+    name: "Red Velvet con Crema",
+    image: "https://picsum.photos/300/200?random=5",
+  },
+  {
+    id: 6,
+    name: "Zanahoria con Nueces",
+    image: "https://picsum.photos/300/200?random=6",
+  },
+  {
+    id: 7,
+    name: "Limón con Merengue",
+    image: "https://picsum.photos/300/200?random=7",
+  },
+  {
+    id: 8,
+    name: "Dulce de Leche",
+    image: "https://picsum.photos/300/200?random=8",
+  },
+  {
+    id: 9,
+    name: "Chocolate Blanco y Frambuesas",
+    image: "https://picsum.photos/300/200?random=9",
+  },
+  {
+    id: 10,
+    name: "Tres Leches",
+    image: "https://picsum.photos/300/200?random=10",
+  },
+];
+
 export const products = [
   {
     id: 1,

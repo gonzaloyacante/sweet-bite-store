@@ -2,6 +2,7 @@ import { Box } from "@chakra-ui/react";
 import { Header } from "./components/layout/Header";
 import { MainSection } from "./components/section/MainSection";
 import { ProductsSection } from "./components/section/ProductsSection";
+import { CustomCakesSection } from "./components/section/CustomCakesSection";
 import { Footer } from "./components/layout/Footer";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <Header />
       <MainSection />
       <ProductsSection />
+      <CustomCakesSection />
       <Footer />
     </Box>
   );
