@@ -37,6 +37,11 @@ export const CartDrawer = ({
     .reduce((total, item) => total + item.price * item.quantity, 0)
     .toFixed(2);
 
+  const totalItems = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
+
   const handleRemoveItem = (id) => {
     removeFromCart(id);
     showToast({
@@ -195,7 +200,7 @@ export const CartDrawer = ({
                   color="text.primary">
                   Total:
                 </Text>
-                {totalPrice >= 5 && (
+                {totalItems >= 5 && (
                   <Badge colorScheme="green" p={2} borderRadius="md">
                     {freeShippingText}
                   </Badge>
