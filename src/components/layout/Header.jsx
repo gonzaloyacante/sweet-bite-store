@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FaCartShopping, FaHeart, FaBars, FaXmark } from "react-icons/fa6";
+import { FaCartShopping, FaBars, FaXmark } from "react-icons/fa6";
 import {
   Box,
   Flex,
@@ -70,12 +70,6 @@ export const Header = () => {
           </Button>
         </Flex>
         <Flex>
-          <IconButton
-            icon={<FaHeart />}
-            variant="ghost"
-            color="primary.700"
-            aria-label="Favoritos"
-          />
           <IconButton
             icon={<FaCartShopping />}
             variant="ghost"
