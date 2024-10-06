@@ -111,7 +111,7 @@ export const CartDrawer = ({
                     rounded="md"
                     src={item.image}
                     alt={item.name}
-                    h="64px"
+                    h={{ base: "64px", md: "68px" }}
                     objectFit="cover"
                     mr={2}
                   />
@@ -121,7 +121,7 @@ export const CartDrawer = ({
                     display="flex"
                     flexDirection="column"
                     justifyContent="center">
-                    <Text fontWeight="bold" fontSize="md">
+                    <Text fontWeight="bold" fontSize="md" color="text.primary">
                       {item.name}
                     </Text>
                     <Flex
@@ -129,7 +129,7 @@ export const CartDrawer = ({
                       justifyContent="space-between"
                       w="100%"
                       mt={{ base: 2, sm: 0 }}>
-                      <Text fontSize="sm" color="gray.600">
+                      <Text fontSize="sm" color="text.secondary">
                         ${item.price.toFixed(2)} x {item.quantity}
                       </Text>
                       <HStack>
