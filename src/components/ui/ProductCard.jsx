@@ -25,7 +25,7 @@ export const ProductCard = ({ product, addToCart }) => {
     setIsTooltipOpen(true);
     setTimeout(() => {
       setIsTooltipOpen(false);
-    }, 1500);
+    }, 800);
   };
 
   return (

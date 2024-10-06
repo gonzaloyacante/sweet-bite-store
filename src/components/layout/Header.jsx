@@ -37,7 +37,7 @@ export const Header = ({ toggleCartDrawer }) => {
       position="sticky"
       top={0}
       zIndex={10}
-      h="70px"
+      h="72px"
       boxShadow="lg">
       <Flex
         justify="space-between"
