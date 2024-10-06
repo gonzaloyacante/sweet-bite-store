@@ -4,7 +4,7 @@ import { SearchBar } from "../ui/SearchBar";
 import { ProductCard } from "../ui/ProductCard";
 import PropTypes from "prop-types";
 
-export const ProductsSection = ({ products }) => {
+export const ProductsSection = ({ products, addToCart }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOption, setSortOption] = useState("");
 
@@ -19,7 +19,6 @@ export const ProductsSection = ({ products }) => {
         "price-asc": (a, b) => a.price - b.price,
         "price-desc": (a, b) => b.price - a.price,
       };
-
       return sortMethods[sortOption] ? sortMethods[sortOption](a, b) : 0;
     });
 
@@ -38,7 +37,11 @@ export const ProductsSection = ({ products }) => {
         alignItems="start"
         justifyContent="center">
         {filteredProducts.map((product) => (
-          <ProductCard key={product.id} {...product} />
+          <ProductCard
+            key={product.id}
+            product={product}
+            addToCart={addToCart}
+          />
         ))}
       </Grid>
     </Box>
@@ -55,4 +58,5 @@ const productShape = PropTypes.shape({
 
 ProductsSection.propTypes = {
   products: PropTypes.arrayOf(productShape).isRequired,
+  addToCart: PropTypes.func.isRequired,
 };

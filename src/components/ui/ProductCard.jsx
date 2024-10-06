@@ -5,11 +5,29 @@ import {
   Image,
   Text,
   IconButton,
+  Tooltip,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import { FaCartShopping } from "react-icons/fa6";
+import { useState } from "react";
 
-export const ProductCard = ({ name, description, price, image }) => {
+export const ProductCard = ({ product, addToCart }) => {
+  const { name, description, price, image } = product;
+  const [tooltipLabel, setTooltipLabel] = useState("Agregar al carrito");
+  const [isTooltipOpen, setIsTooltipOpen] = useState(false);
+
+  const showTooltip = useBreakpointValue({ base: false, md: true });
+
+  const handleAddToCart = () => {
+    addToCart(product);
+    setTooltipLabel("Agregado");
+    setIsTooltipOpen(true);
+    setTimeout(() => {
+      setIsTooltipOpen(false);
+    }, 1500);
+  };
+
   return (
     <Card
       borderWidth="1px"
@@ -51,24 +69,37 @@ export const ProductCard = ({ name, description, price, image }) => {
           color="primary.500">
           ${price.toFixed(2)}
         </Text>
-        <IconButton
-          variant="outline"
-          borderColor="primary.500"
-          color="primary.500"
-          aria-label="Agregar al carrito"
-          fontSize="20px"
-          icon={<FaCartShopping />}
-          _hover={{ bg: "primary.300", color: "white" }}
-        />
+        <Tooltip
+          label={tooltipLabel}
+          isOpen={isTooltipOpen}
+          hasArrow
+          placement="top"
+          isDisabled={!showTooltip}>
+          <IconButton
+            variant="outline"
+            borderColor="primary.500"
+            color="primary.500"
+            aria-label="Agregar al carrito"
+            fontSize="20px"
+            icon={<FaCartShopping />}
+            onClick={handleAddToCart}
+            _hover={{ bg: "background.secondary" }}
+          />
+        </Tooltip>
       </CardFooter>
     </Card>
   );
 };
 
-ProductCard.propTypes = {
+const productShape = PropTypes.shape({
+  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string,
   price: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
-  rating: PropTypes.number,
+});
+
+ProductCard.propTypes = {
+  product: productShape.isRequired,
+  addToCart: PropTypes.func.isRequired,
 };

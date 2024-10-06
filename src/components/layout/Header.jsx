@@ -10,10 +10,10 @@ import {
   ScaleFade,
   Image,
 } from "@chakra-ui/react";
-
+import PropTypes from "prop-types";
 import logo from "../../assets/cake-logo.png";
 
-export const Header = () => {
+export const Header = ({ toggleCartDrawer }) => {
   const { isOpen, onToggle } = useDisclosure();
   const [shouldRenderMenu, setShouldRenderMenu] = useState(isOpen);
 
@@ -75,6 +75,7 @@ export const Header = () => {
             variant="ghost"
             color="primary.700"
             aria-label="Carrito"
+            onClick={toggleCartDrawer}
           />
           <IconButton
             icon={isOpen ? <FaXmark /> : <FaBars />}
@@ -117,4 +118,8 @@ export const Header = () => {
       </ScaleFade>
     </Box>
   );
+};
+
+Header.propTypes = {
+  toggleCartDrawer: PropTypes.func.isRequired,
 };

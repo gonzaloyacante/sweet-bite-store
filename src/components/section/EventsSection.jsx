@@ -31,7 +31,7 @@ export const EventsSection = ({ events }) => {
               <Text>{event.date}</Text>
             </Flex>
             <Text color="primary.500" mt={1}>
-              {event.time}
+              {event.startTime} - {event.endTime}
             </Text>
           </Box>
         ))}
@@ -44,7 +44,8 @@ const eventShape = PropTypes.shape({
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
-  time: PropTypes.string.isRequired,
+  startTime: PropTypes.string.isRequired,
+  endTime: PropTypes.string.isRequired,
 });
 
 EventsSection.propTypes = {
