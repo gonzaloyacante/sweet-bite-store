@@ -16,31 +16,33 @@ export const CustomCakesSection = ({ customCakes }) => {
       <Text fontSize="2xl" fontWeight="bold" color="primary.700">
         Pasteles Personalizados
       </Text>
-      <Text color="primary.500" mb={6}>
+      <Text color="primary.500">
         Explora nuestra galería de pasteles personalizados para inspirarte en tu
         próximo pedido especial.
       </Text>
-      <Slider {...settings}>
-        {customCakes.map((cake) => (
-          <Box key={cake.id} p={2}>
-            <Box borderRadius="lg" overflow="hidden">
-              <Image
-                src={cake.image}
-                alt={cake.name}
-                boxSize="100%"
-                objectFit="cover"
-              />
+      <Box p={4}>
+        <Slider {...settings}>
+          {customCakes.map((cake) => (
+            <Box key={cake.id} p={1}>
+              <Box borderRadius="lg" overflow="hidden">
+                <Image
+                  src={cake.image}
+                  alt={cake.name}
+                  boxSize="100%"
+                  objectFit="cover"
+                />
+              </Box>
+              <Text
+                textAlign="center"
+                color="primary.700"
+                mt={2}
+                fontWeight="semibold">
+                {cake.name}
+              </Text>
             </Box>
-            <Text
-              textAlign="center"
-              color="primary.700"
-              mt={2}
-              fontWeight="semibold">
-              {cake.name}
-            </Text>
-          </Box>
-        ))}
-      </Slider>
+          ))}
+        </Slider>
+      </Box>
     </Box>
   );
 };
