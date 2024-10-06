@@ -17,12 +17,12 @@ import {
   Divider,
   VStack,
   HStack,
-  useToast,
-  Badge,
   Tooltip,
   Icon,
+  Badge,
 } from "@chakra-ui/react";
 import { FaTrash, FaShoppingCart, FaMinus, FaPlus } from "react-icons/fa";
+import { useToastNotification } from "../ui/ToastNotification";
 
 export const CartDrawer = ({
   isOpen,
@@ -31,7 +31,7 @@ export const CartDrawer = ({
   removeFromCart,
   updateQuantity,
 }) => {
-  const toast = useToast();
+  const showToast = useToastNotification();
 
   const totalPrice = cartItems
     .reduce((total, item) => total + item.price * item.quantity, 0)
@@ -39,12 +39,10 @@ export const CartDrawer = ({
 
   const handleRemoveItem = (id) => {
     removeFromCart(id);
-    toast({
+    showToast({
       title: "Producto eliminado",
       description: "El producto ha sido eliminado del carrito",
       status: "success",
-      duration: 2000,
-      isClosable: true,
     });
   };
 
@@ -55,12 +53,10 @@ export const CartDrawer = ({
   };
 
   const handleCheckout = () => {
-    toast({
+    showToast({
       title: "Procesando compra",
       description: "Redirigiendo al proceso de pago...",
       status: "info",
-      duration: 2000,
-      isClosable: true,
     });
     // Aquí iría la lógica para redirigir al proceso de pago
   };
@@ -199,7 +195,7 @@ export const CartDrawer = ({
                   color="text.primary">
                   Total:
                 </Text>
-                {cartItems.length >= 5 && (
+                {totalPrice >= 5 && (
                   <Badge colorScheme="green" p={2} borderRadius="md">
                     {freeShippingText}
                   </Badge>

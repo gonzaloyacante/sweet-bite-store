@@ -5,27 +5,23 @@ import {
   Image,
   Text,
   IconButton,
-  Tooltip,
-  useBreakpointValue,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import { FaCartShopping } from "react-icons/fa6";
-import { useState } from "react";
+import { useToastNotification } from "./ToastNotification";
 
 export const ProductCard = ({ product, addToCart }) => {
   const { name, description, price, image } = product;
-  const [tooltipLabel, setTooltipLabel] = useState("Agregar al carrito");
-  const [isTooltipOpen, setIsTooltipOpen] = useState(false);
-
-  const showTooltip = useBreakpointValue({ base: false, md: true });
+  const showToast = useToastNotification();
 
   const handleAddToCart = () => {
     addToCart(product);
-    setTooltipLabel("Agregado");
-    setIsTooltipOpen(true);
-    setTimeout(() => {
-      setIsTooltipOpen(false);
-    }, 800);
+    showToast({
+      title: "Producto agregado",
+      description: `${name} ha sido agregado al carrito`,
+      status: "success",
+      duration: 2000,
+    });
   };
 
   return (
@@ -36,7 +32,7 @@ export const ProductCard = ({ product, addToCart }) => {
       bg="background.primary"
       boxShadow="lg"
       border="none"
-      height="100%">
+      minH="100%">
       <Image
         src={image}
         alt={name}
@@ -69,23 +65,16 @@ export const ProductCard = ({ product, addToCart }) => {
           color="primary.500">
           ${price.toFixed(2)}
         </Text>
-        <Tooltip
-          label={tooltipLabel}
-          isOpen={isTooltipOpen}
-          hasArrow
-          placement="top"
-          isDisabled={!showTooltip}>
-          <IconButton
-            variant="outline"
-            borderColor="primary.500"
-            color="primary.500"
-            aria-label="Agregar al carrito"
-            fontSize="20px"
-            icon={<FaCartShopping />}
-            onClick={handleAddToCart}
-            _hover={{ bg: "background.secondary" }}
-          />
-        </Tooltip>
+        <IconButton
+          variant="outline"
+          borderColor="primary.500"
+          color="primary.500"
+          aria-label="Agregar al carrito"
+          fontSize="20px"
+          icon={<FaCartShopping />}
+          onClick={handleAddToCart}
+          _hover={{ bg: "background.secondary" }}
+        />
       </CardFooter>
     </Card>
   );
