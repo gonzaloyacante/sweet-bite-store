@@ -3,17 +3,29 @@ import { extendTheme } from "@chakra-ui/react";
 const theme = extendTheme({
   colors: {
     primary: {
-      500: "#FF6F61",
+      50: "#fff5f7",
+      100: "#fed7e2",
+      200: "#fbb6ce",
+      300: "#f687b3",
+      400: "#ed64a6",
+      500: "#d53f8c",
+      600: "#b83280",
+      700: "#97266d",
+      800: "#702459",
+      900: "#521b41",
     },
     secondary: {
-      500: "#FFD54F",
+      500: "#B83280",
     },
     background: {
       light: "#FFF9E6",
-      dark: "#F5F5F5",
+      dark: "#702459",
+      extraLight: "#FFF5F7",
+      primary: "#FED7E2",
+      secondary: "#FBB6CE",
     },
     text: {
-      main: "#333333",
+      primary: "#333333",
       secondary: "#555555",
     },
     success: "#4CAF50",
@@ -44,10 +56,10 @@ const theme = extendTheme({
           },
         },
         outline: {
-          borderColor: "pink.500",
-          color: "pink.500",
+          borderColor: "primary.500",
+          color: "primary.500",
           _hover: {
-            bg: "pink.100",
+            bg: "primary.100",
           },
         },
       },

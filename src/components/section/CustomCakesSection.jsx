@@ -1,9 +1,8 @@
 import { Box, Text, Image, useBreakpointValue } from "@chakra-ui/react";
+import PropTypes from "prop-types";
 import Slider from "react-slick";
 
-import { customCakes } from "../../data/data";
-
-export const CustomCakesSection = () => {
+export const CustomCakesSection = ({ customCakes }) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -13,11 +12,11 @@ export const CustomCakesSection = () => {
   };
 
   return (
-    <Box m={4} bg="pink.100" borderRadius="lg" p={10} boxShadow="lg">
-      <Text fontSize="2xl" fontWeight="bold" color="pink.800" mb={4}>
+    <Box m={4} bg="background.primary" borderRadius="lg" p={6} boxShadow="lg">
+      <Text fontSize="2xl" fontWeight="bold" color="primary.700">
         Pasteles Personalizados
       </Text>
-      <Text color="pink.600" mb={6}>
+      <Text color="primary.500" mb={6}>
         Explora nuestra galería de pasteles personalizados para inspirarte en tu
         próximo pedido especial.
       </Text>
@@ -34,7 +33,7 @@ export const CustomCakesSection = () => {
             </Box>
             <Text
               textAlign="center"
-              color="pink.800"
+              color="primary.700"
               mt={2}
               fontWeight="semibold">
               {cake.name}
@@ -44,4 +43,14 @@ export const CustomCakesSection = () => {
       </Slider>
     </Box>
   );
+};
+
+const cakeShape = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+});
+
+CustomCakesSection.propTypes = {
+  customCakes: PropTypes.arrayOf(cakeShape).isRequired,
 };

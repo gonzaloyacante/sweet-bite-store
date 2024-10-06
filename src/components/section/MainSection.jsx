@@ -10,16 +10,16 @@ export const MainSection = () => {
       p={6}
       m={4}
       borderRadius="2xl"
-      bg="pink.100">
+      bg="background.primary">
       <Box>
         <Text
           fontSize="xx-large"
           textAlign="center"
-          color="pink.700"
+          color="primary.700"
           fontWeight="semibold">
           Deliciosos pasteles hechos con amor
         </Text>
-        <Text textAlign="center" color="pink.500">
+        <Text textAlign="center" color="primary.500">
           Descubre nuestra selección de pasteles artesanales para cada ocasión
         </Text>
       </Box>

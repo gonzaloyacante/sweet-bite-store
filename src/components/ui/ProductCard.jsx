@@ -7,7 +7,6 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
-
 import { FaCartShopping } from "react-icons/fa6";
 
 export const ProductCard = ({ name, description, price, image }) => {
@@ -16,8 +15,8 @@ export const ProductCard = ({ name, description, price, image }) => {
       borderWidth="1px"
       borderRadius="lg"
       overflow="hidden"
-      bg="pink.100"
-      boxShadow="md"
+      bg="background.primary"
+      boxShadow="lg"
       border="none"
       height="100%">
       <Image
@@ -31,13 +30,13 @@ export const ProductCard = ({ name, description, price, image }) => {
         <Text
           as="h3"
           fontSize={{ base: "lg", md: "xl" }}
-          color="pink.700"
+          color="primary.700"
           fontWeight="semibold"
           lineHeight="tight"
           isTruncated>
           {name}
         </Text>
-        <Text mt={2} color="pink.500" fontSize={{ base: "sm", md: "md" }}>
+        <Text mt={2} color="text.secondary" fontSize={{ base: "sm", md: "md" }}>
           {description}
         </Text>
       </CardBody>
@@ -49,15 +48,17 @@ export const ProductCard = ({ name, description, price, image }) => {
         <Text
           fontWeight="bold"
           fontSize={{ base: "lg", md: "xl" }}
-          color="pink.700">
+          color="primary.500">
           ${price.toFixed(2)}
         </Text>
         <IconButton
           variant="outline"
-          colorScheme="primary"
+          borderColor="primary.500"
+          color="primary.500"
           aria-label="Agregar al carrito"
           fontSize="20px"
-          icon={<FaCartShopping color="pink.700" />}
+          icon={<FaCartShopping />}
+          _hover={{ bg: "primary.300", color: "white" }}
         />
       </CardFooter>
     </Card>

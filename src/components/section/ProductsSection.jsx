@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Box, Grid } from "@chakra-ui/react";
 import { SearchBar } from "../ui/SearchBar";
 import { ProductCard } from "../ui/ProductCard";
-import { products } from "../../data/data";
+import PropTypes from "prop-types";
 
-export const ProductsSection = () => {
+export const ProductsSection = ({ products }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOption, setSortOption] = useState("");
 
@@ -43,4 +43,16 @@ export const ProductsSection = () => {
       </Grid>
     </Box>
   );
+};
+
+const productShape = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  price: PropTypes.number.isRequired,
+  image: PropTypes.string.isRequired,
+});
+
+ProductsSection.propTypes = {
+  products: PropTypes.arrayOf(productShape).isRequired,
 };

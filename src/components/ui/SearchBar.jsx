@@ -19,22 +19,30 @@ export const SearchBar = ({
     <Box m={4}>
       <InputGroup mb={4} boxShadow="md" borderRadius="lg">
         <InputLeftElement pointerEvents="none">
-          <Icon as={RiMenuSearchLine} color="pink.500" />
+          <Icon as={RiMenuSearchLine} color="primary.500" />
         </InputLeftElement>
         <Input
           placeholder="Buscar productos..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          bg="background.light"
+          color="text.primary"
+          _placeholder={{ color: "text.secondary" }}
+          _hover={{ borderColor: "primary.300" }}
+          _focus={{ borderColor: "primary.500" }}
         />
       </InputGroup>
 
       <Select
-        color="pink.500"
+        color="primary.500"
         borderRadius="lg"
         boxShadow="md"
         placeholder="Ordenar por..."
         value={sortOption}
-        onChange={(e) => setSortOption(e.target.value)}>
+        onChange={(e) => setSortOption(e.target.value)}
+        bg="background.light"
+        _hover={{ borderColor: "primary.300" }}
+        _focus={{ borderColor: "primary.500" }}>
         <option value="name">Nombre</option>
         <option value="category">Categoría</option>
         <option value="price-asc">Precio: Menor a Mayor</option>

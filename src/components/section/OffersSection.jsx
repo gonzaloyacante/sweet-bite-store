@@ -1,31 +1,35 @@
 import { Box, Heading, Text, SimpleGrid } from "@chakra-ui/react";
+import PropTypes from "prop-types";
 
-export const OffersSection = () => {
+export const OffersSection = ({ offers }) => {
   return (
-    <Box bg="pink.100" borderRadius="lg" p={6} m={4} boxShadow="md">
-      <Heading as="h3" size="lg" color="pink.800" mb={4}>
+    <Box bg="background.primary" borderRadius="lg" p={6} m={4} boxShadow="lg">
+      <Heading as="h3" size="lg" color="primary.700" mb={4}>
         Ofertas Especiales
       </Heading>
-      <SimpleGrid columns={{ base: 1 }} spacing={4}>
-        <Box bg="pink.200" p={4} borderRadius="lg">
-          <Heading as="h4" size="md" color="pink.800" fontWeight="semibold">
-            2x1 en Cupcakes
-          </Heading>
-          <Text color="pink.600">Todos los martes</Text>
-        </Box>
-        <Box bg="pink.200" p={4} borderRadius="lg">
-          <Heading as="h4" size="md" color="pink.800" fontWeight="semibold">
-            20% desc. en Tartas
-          </Heading>
-          <Text color="pink.600">Código: TARTA20</Text>
-        </Box>
-        <Box bg="pink.200" p={4} borderRadius="lg">
-          <Heading as="h4" size="md" color="pink.800" fontWeight="semibold">
-            Envío gratis
-          </Heading>
-          <Text color="pink.600">En pedidos +$50</Text>
-        </Box>
+      <SimpleGrid columns={{ base: 1, md: 3 }} spacing={4}>
+        {offers.map((offer, index) => (
+          <Box key={index} bg="background.secondary" p={4} borderRadius="lg">
+            <Heading
+              as="h4"
+              size="md"
+              color="primary.700"
+              fontWeight="semibold">
+              {offer.title}
+            </Heading>
+            <Text color="primary.500">{offer.description}</Text>
+          </Box>
+        ))}
       </SimpleGrid>
     </Box>
   );
+};
+
+const offerShape = PropTypes.shape({
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+});
+
+OffersSection.propTypes = {
+  offers: PropTypes.arrayOf(offerShape).isRequired,
 };
