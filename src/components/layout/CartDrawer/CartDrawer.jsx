@@ -1,3 +1,4 @@
+import { useMemo, useCallback } from "react";
 import {
   Drawer,
   DrawerBody,
@@ -12,9 +13,12 @@ import {
 import { CartDrawerHeader } from "./CartDrawerHeader";
 import { CartDrawerItem } from "./CartDrawerItem";
 import { CartDrawerFooter } from "./CartDrawerFooter";
-
 import useCart from "../../../hooks/useCart";
 import { useToastNotification } from "../../ui/ToastNotification";
+import React from "react";
+
+const MemoizedCartDrawerItem = React.memo(CartDrawerItem);
+const MemoizedCartDrawerFooter = React.memo(CartDrawerFooter);
 
 export const CartDrawer = () => {
   const {
@@ -26,32 +30,39 @@ export const CartDrawer = () => {
   } = useCart();
   const showToast = useToastNotification();
 
-  const totalPrice = cartItems
-    .reduce((total, item) => total + item.price * item.quantity, 0)
-    .toFixed(2);
-
-  const totalItems = cartItems.reduce(
-    (total, item) => total + item.quantity,
-    0
+  const totalItems = useMemo(
+    () => cartItems.reduce((acc, item) => acc + item.quantity, 0),
+    [cartItems]
   );
 
-  const handleRemoveItem = (id) => {
-    removeFromCart(id);
-    showToast({
-      title: "Producto eliminado",
-      description: "El producto ha sido eliminado del carrito",
-      status: "success",
-    });
-  };
+  const totalPrice = useMemo(
+    () =>
+      cartItems
+        .reduce((acc, item) => acc + item.price * item.quantity, 0)
+        .toFixed(2),
+    [cartItems]
+  );
 
-  const handleCheckout = () => {
+  const handleRemoveItem = useCallback(
+    (id) => {
+      removeFromCart(id);
+      showToast({
+        title: "Producto eliminado",
+        description: "El producto ha sido eliminado del carrito",
+        status: "success",
+      });
+    },
+    [removeFromCart, showToast]
+  );
+
+  const handleCheckout = useCallback(() => {
     showToast({
       title: "Procesando compra",
       description: "Redirigiendo al proceso de pago...",
       status: "info",
     });
     // Aquí iría la lógica para redirigir al proceso de pago
-  };
+  }, [showToast]);
 
   return (
     <Drawer
@@ -67,7 +78,7 @@ export const CartDrawer = () => {
           {cartItems.length > 0 ? (
             <>
               {cartItems.map((item) => (
-                <CartDrawerItem
+                <MemoizedCartDrawerItem
                   key={item.id}
                   item={item}
                   onRemove={handleRemoveItem}
@@ -86,12 +97,14 @@ export const CartDrawer = () => {
             </Flex>
           )}
         </DrawerBody>
-        <CartDrawerFooter
-          totalPrice={totalPrice}
-          totalItems={totalItems}
-          toggleCartDrawer={toggleCartDrawer}
-          handleCheckout={handleCheckout}
-        />
+        {cartItems.length > 0 && (
+          <MemoizedCartDrawerFooter
+            totalPrice={totalPrice}
+            totalItems={totalItems}
+            toggleCartDrawer={toggleCartDrawer}
+            handleCheckout={handleCheckout}
+          />
+        )}
       </DrawerContent>
     </Drawer>
   );
