@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 import { FaCartShopping, FaBars, FaXmark } from "react-icons/fa6";
 import {
   Box,
@@ -9,13 +10,17 @@ import {
   useDisclosure,
   ScaleFade,
   Image,
+  Badge,
 } from "@chakra-ui/react";
-import PropTypes from "prop-types";
+
 import logo from "../../assets/cake-logo.png";
 
-export const Header = ({ toggleCartDrawer }) => {
+import useCart from "../../hooks/useCart";
+
+export const Header = () => {
   const { isOpen, onToggle } = useDisclosure();
   const [shouldRenderMenu, setShouldRenderMenu] = useState(isOpen);
+  const { toggleCartDrawer, cartItems } = useCart();
 
   useEffect(() => {
     if (isOpen) {
@@ -28,6 +33,11 @@ export const Header = ({ toggleCartDrawer }) => {
       return () => clearTimeout(timer);
     }
   }, [isOpen]);
+
+  const totalItems = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
 
   return (
     <Box
@@ -71,7 +81,23 @@ export const Header = ({ toggleCartDrawer }) => {
         </Flex>
         <Flex>
           <IconButton
-            icon={<FaCartShopping />}
+            icon={
+              <Box position="relative">
+                <FaCartShopping />
+                {totalItems > 0 && (
+                  <Badge
+                    colorScheme="red"
+                    borderRadius="full"
+                    position="absolute"
+                    top="-1"
+                    right="-1"
+                    fontSize="0.8em"
+                    px={1}>
+                    {totalItems}
+                  </Badge>
+                )}
+              </Box>
+            }
             variant="ghost"
             color="primary.700"
             aria-label="Carrito"
@@ -118,8 +144,4 @@ export const Header = ({ toggleCartDrawer }) => {
       </ScaleFade>
     </Box>
   );
-};
-
-Header.propTypes = {
-  toggleCartDrawer: PropTypes.func.isRequired,
 };

@@ -7,10 +7,14 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
+
+import useCart from "../../hooks/useCart";
+
 import { FaCartShopping } from "react-icons/fa6";
 import { useToastNotification } from "./ToastNotification";
 
-export const ProductCard = ({ product, addToCart }) => {
+export const ProductCard = ({ product }) => {
+  const { addToCart } = useCart();
   const { name, description, price, image } = product;
   const showToast = useToastNotification();
 
@@ -90,5 +94,4 @@ const productShape = PropTypes.shape({
 
 ProductCard.propTypes = {
   product: productShape.isRequired,
-  addToCart: PropTypes.func.isRequired,
 };

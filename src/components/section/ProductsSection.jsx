@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { Box, Grid } from "@chakra-ui/react";
-import { SearchBar } from "../ui/SearchBar";
-import { ProductCard } from "../ui/ProductCard";
 import PropTypes from "prop-types";
 
-export const ProductsSection = ({ products, addToCart }) => {
+import { SearchBar } from "../ui/SearchBar";
+import { ProductCard } from "../ui/ProductCard";
+
+import useCart from "../../hooks/useCart";
+
+export const ProductsSection = ({ products }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOption, setSortOption] = useState("");
+  const { addToCart } = useCart();
 
   const filteredProducts = products
     .filter((product) =>
@@ -58,5 +62,4 @@ const productShape = PropTypes.shape({
 
 ProductsSection.propTypes = {
   products: PropTypes.arrayOf(productShape).isRequired,
-  addToCart: PropTypes.func.isRequired,
 };

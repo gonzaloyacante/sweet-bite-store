@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import {
   Drawer,
   DrawerBody,
@@ -22,15 +21,19 @@ import {
   Badge,
 } from "@chakra-ui/react";
 import { FaTrash, FaShoppingCart, FaMinus, FaPlus } from "react-icons/fa";
+
 import { useToastNotification } from "../ui/ToastNotification";
 
-export const CartDrawer = ({
-  isOpen,
-  onClose,
-  cartItems,
-  removeFromCart,
-  updateQuantity,
-}) => {
+import useCart from "../../hooks/useCart";
+
+export const CartDrawer = () => {
+  const {
+    cartItems,
+    removeFromCart,
+    updateQuantity,
+    isCartOpen,
+    toggleCartDrawer,
+  } = useCart();
   const showToast = useToastNotification();
 
   const totalPrice = cartItems
@@ -72,7 +75,11 @@ export const CartDrawer = ({
   });
 
   return (
-    <Drawer isOpen={isOpen} placement="right" onClose={onClose} size="md">
+    <Drawer
+      isOpen={isCartOpen}
+      placement="right"
+      onClose={toggleCartDrawer}
+      size="md">
       <DrawerOverlay />
       <DrawerCloseButton />
       <DrawerContent bg="background.light">
@@ -91,7 +98,7 @@ export const CartDrawer = ({
             <Button
               size={{ base: "sm", sm: "md" }}
               variant="outline"
-              onClick={onClose}>
+              onClick={toggleCartDrawer}>
               Cerrar
             </Button>
           </Flex>
@@ -178,7 +185,7 @@ export const CartDrawer = ({
               <Text mt={4} fontSize="lg" color="gray.500">
                 Tu carrito está vacío
               </Text>
-              <Button mt={4} onClick={onClose}>
+              <Button mt={4} onClick={toggleCartDrawer}>
                 Continuar Comprando
               </Button>
             </Flex>
@@ -213,7 +220,11 @@ export const CartDrawer = ({
                 </Text>
               </Flex>
               <Flex w="100%" justifyContent="space-between" gap={3} px={4}>
-                <Button size="sm" variant="outline" onClick={onClose} flex={1}>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={toggleCartDrawer}
+                  flex={1}>
                   Seguir Comprando
                 </Button>
                 <Button size="sm" onClick={handleCheckout} flex={1}>
@@ -226,21 +237,4 @@ export const CartDrawer = ({
       </DrawerContent>
     </Drawer>
   );
-};
-
-const productShape = PropTypes.shape({
-  id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  description: PropTypes.string,
-  price: PropTypes.number.isRequired,
-  image: PropTypes.string.isRequired,
-  quantity: PropTypes.number.isRequired,
-});
-
-CartDrawer.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
-  cartItems: PropTypes.arrayOf(productShape).isRequired,
-  removeFromCart: PropTypes.func.isRequired,
-  updateQuantity: PropTypes.func.isRequired,
 };
