@@ -1,4 +1,6 @@
+import { useNavigate } from "react-router-dom";
 import { useMemo, useCallback } from "react";
+
 import {
   Drawer,
   DrawerBody,
@@ -21,6 +23,8 @@ const MemoizedCartDrawerItem = React.memo(CartDrawerItem);
 const MemoizedCartDrawerFooter = React.memo(CartDrawerFooter);
 
 export const CartDrawer = () => {
+  const navigate = useNavigate();
+
   const {
     cartItems,
     removeFromCart,
@@ -56,13 +60,22 @@ export const CartDrawer = () => {
   );
 
   const handleCheckout = useCallback(() => {
+    if (cartItems.length === 0) {
+      showToast({
+        title: "Carrito vacío",
+        description: "No puedes proceder al pago sin productos.",
+        status: "warning",
+      });
+      return;
+    }
+
     showToast({
       title: "Procesando compra",
       description: "Redirigiendo al proceso de pago...",
       status: "info",
     });
-    // Aquí iría la lógica para redirigir al proceso de pago
-  }, [showToast]);
+    navigate("/payment");
+  }, [cartItems, showToast, navigate]);
 
   return (
     <Drawer

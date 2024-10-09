@@ -1,6 +1,10 @@
-import { Flex, Box, Text, Image } from "@chakra-ui/react";
+import { Flex, Box, Text, Image, Button } from "@chakra-ui/react";
+
+import { useNavigate } from "react-router-dom";
 
 export const MainSection = () => {
+  const navigate = useNavigate();
+
   return (
     <Flex
       justifyContent="space-around"
@@ -30,7 +34,12 @@ export const MainSection = () => {
         borderRadius="xl"
         w="100%"
         maxW={500}
+        boxShadow="lg"
       />
+
+      <Button mt={4} onClick={() => navigate("/products")}>
+        Ver productos
+      </Button>
     </Flex>
   );
 };
