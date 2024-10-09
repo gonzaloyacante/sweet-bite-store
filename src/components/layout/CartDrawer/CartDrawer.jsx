@@ -60,22 +60,16 @@ export const CartDrawer = () => {
   );
 
   const handleCheckout = useCallback(() => {
-    if (cartItems.length === 0) {
-      showToast({
-        title: "Carrito vacío",
-        description: "No puedes proceder al pago sin productos.",
-        status: "warning",
-      });
-      return;
-    }
-
     showToast({
       title: "Procesando compra",
       description: "Redirigiendo al proceso de pago...",
       status: "info",
     });
+
+    toggleCartDrawer();
+
     navigate("/payment");
-  }, [cartItems, showToast, navigate]);
+  }, [showToast, navigate, toggleCartDrawer]);
 
   return (
     <Drawer
