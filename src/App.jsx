@@ -6,8 +6,8 @@ import { ProductsSection } from "./components/section/ProductsSection";
 import { CustomCakesSection } from "./components/section/CustomCakesSection";
 import { EventsSection } from "./components/section/EventsSection";
 import { Footer } from "./components/layout/Footer";
-import { CartDrawer } from "./components/layout/CartDrawer";
-import { CartProvider } from './context/CartContext';
+import { CartDrawer } from "./components/layout/CartDrawer/CartDrawer";
+import { CartProvider } from "./context/CartContext";
 
 import { offers, products, customCakes, events } from "./data/data";
 

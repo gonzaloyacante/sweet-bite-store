@@ -89,8 +89,8 @@ export const Header = () => {
                     colorScheme="red"
                     borderRadius="full"
                     position="absolute"
-                    top="-1"
-                    right="-1"
+                    top="-2"
+                    right="-2"
                     fontSize="0.8em"
                     px={1}>
                     {totalItems}
