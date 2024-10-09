@@ -56,6 +56,7 @@ export const Header = () => {
         <Heading
           as="h1"
           size="lg"
+          cursor="pointer"
           color="primary.700"
           display="flex"
           alignItems="center"
@@ -75,13 +76,13 @@ export const Header = () => {
             onClick={() => navigate("/products")}>
             Productos
           </Button>
-          <Button variant="ghost" color="primary.700" isDisabled="true">
+          <Button variant="ghost" color="primary.700" isDisabled>
             Personalizados
           </Button>
-          <Button variant="ghost" color="primary.700" isDisabled="true">
+          <Button variant="ghost" color="primary.700" isDisabled>
             Eventos
           </Button>
-          <Button variant="ghost" color="primary.700" isDisabled="true">
+          <Button variant="ghost" color="primary.700" isDisabled>
             Contacto
           </Button>
         </Flex>
@@ -148,13 +149,13 @@ export const Header = () => {
               }}>
               Productos
             </Button>
-            <Button isDisabled="true" variant="ghost" color="primary.700">
+            <Button isDisabled variant="ghost" color="primary.700">
               Personalizados
             </Button>
-            <Button isDisabled="true" variant="ghost" color="primary.700">
+            <Button isDisabled variant="ghost" color="primary.700">
               Eventos
             </Button>
-            <Button isDisabled="true" variant="ghost" color="primary.700">
+            <Button isDisabled variant="ghost" color="primary.700">
               Contacto
             </Button>
           </Flex>

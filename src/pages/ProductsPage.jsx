@@ -4,13 +4,18 @@ import PropTypes from "prop-types";
 
 import { SearchBar } from "../components/ui/SearchBar";
 import { ProductCard } from "../components/ui/ProductCard";
-
 import useCart from "../hooks/useCart";
+import { Pagination } from "../components/ui/Pagination";
+
+const ITEMS_PER_PAGE = 10; // Número de productos por página
 
 export const ProductsPage = ({ products }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOption, setSortOption] = useState("");
   const { addToCart } = useCart();
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
 
   const filteredProducts = products
     .filter((product) =>
@@ -19,12 +24,17 @@ export const ProductsPage = ({ products }) => {
     .sort((a, b) => {
       const sortMethods = {
         name: (a, b) => a.name.localeCompare(b.name),
-        // category: (a, b) => a.category.localeCompare(b.category),
         "price-asc": (a, b) => a.price - b.price,
         "price-desc": (a, b) => b.price - a.price,
       };
       return sortMethods[sortOption] ? sortMethods[sortOption](a, b) : 0;
     });
+
+  // Calcular los productos que se mostrarán en la página actual
+  const currentProducts = filteredProducts.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
 
   return (
     <Box>
@@ -40,7 +50,7 @@ export const ProductsPage = ({ products }) => {
         gap={4}
         alignItems="start"
         justifyContent="center">
-        {filteredProducts.map((product) => (
+        {currentProducts.map((product) => (
           <ProductCard
             key={product.id}
             product={product}
@@ -48,6 +58,15 @@ export const ProductsPage = ({ products }) => {
           />
         ))}
       </Grid>
+
+      {/* Paginación */}
+      <Box display="flex" justifyContent="center" mt={4}>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={(page) => setCurrentPage(page)}
+        />
+      </Box>
     </Box>
   );
 };
