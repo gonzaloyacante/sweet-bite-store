@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { FaCartShopping, FaBars, FaXmark } from "react-icons/fa6";
 import {
@@ -18,6 +19,8 @@ import logo from "../../assets/cake-logo.png";
 import useCart from "../../hooks/useCart";
 
 export const Header = () => {
+  const navigate = useNavigate();
+
   const { isOpen, onToggle } = useDisclosure();
   const [shouldRenderMenu, setShouldRenderMenu] = useState(isOpen);
   const { toggleCartDrawer, cartItems } = useCart();
@@ -49,33 +52,36 @@ export const Header = () => {
       zIndex={10}
       h="72px"
       boxShadow="lg">
-      <Flex
-        justify="space-between"
-        align="center"
-        mx="auto"
-        maxW="container.lg">
+      <Flex justify="space-between" align="center" w="100%">
         <Heading
           as="h1"
           size="lg"
           color="primary.700"
           display="flex"
-          alignItems="center">
+          alignItems="center"
+          onClick={() => navigate("/")}>
           <Image src={logo} alt="Logo" boxSize="36px" mr={4} /> Sweet Bite
         </Heading>
         <Flex display={{ base: "none", md: "flex" }} spacing={4}>
-          <Button variant="ghost" color="primary.700">
+          <Button
+            variant="ghost"
+            color="primary.700"
+            onClick={() => navigate("/")}>
             Inicio
           </Button>
-          <Button variant="ghost" color="primary.700">
+          <Button
+            variant="ghost"
+            color="primary.700"
+            onClick={() => navigate("/products")}>
             Productos
           </Button>
-          <Button variant="ghost" color="primary.700">
+          <Button variant="ghost" color="primary.700" isDisabled="true">
             Personalizados
           </Button>
-          <Button variant="ghost" color="primary.700">
+          <Button variant="ghost" color="primary.700" isDisabled="true">
             Eventos
           </Button>
-          <Button variant="ghost" color="primary.700">
+          <Button variant="ghost" color="primary.700" isDisabled="true">
             Contacto
           </Button>
         </Flex>
@@ -124,19 +130,31 @@ export const Header = () => {
             rounded="md"
             roundedTop={0}
             shadow="md">
-            <Button variant="ghost" color="primary.700">
+            <Button
+              variant="ghost"
+              color="primary.700"
+              onClick={() => {
+                navigate("/");
+                onToggle();
+              }}>
               Inicio
             </Button>
-            <Button variant="ghost" color="primary.700">
+            <Button
+              variant="ghost"
+              color="primary.700"
+              onClick={() => {
+                navigate("/products");
+                onToggle();
+              }}>
               Productos
             </Button>
-            <Button variant="ghost" color="primary.700">
+            <Button isDisabled="true" variant="ghost" color="primary.700">
               Personalizados
             </Button>
-            <Button variant="ghost" color="primary.700">
+            <Button isDisabled="true" variant="ghost" color="primary.700">
               Eventos
             </Button>
-            <Button variant="ghost" color="primary.700">
+            <Button isDisabled="true" variant="ghost" color="primary.700">
               Contacto
             </Button>
           </Flex>
