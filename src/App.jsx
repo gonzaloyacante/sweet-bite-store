@@ -1,15 +1,9 @@
 import { Box } from "@chakra-ui/react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import { BrowserRouter as Router } from "react-router-dom";
 import { Header } from "./components/layout/Header";
 import { CartDrawer } from "./components/layout/CartDrawer/CartDrawer";
 import { CartProvider } from "./context/CartContext";
-
-import { HomePage } from "./pages/HomePage";
-import { ProductsPage } from "./pages/ProductsPage";
-import { PaymentPage } from "./pages/PaymentPage";
-
-import { products } from "./data/data";
+import { AnimatedRoutes } from "./components/ui/AnimatedRoutes";
 
 function App() {
   return (
@@ -21,14 +15,7 @@ function App() {
           display="flex"
           flexDirection="column">
           <Header />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route
-              path="/products"
-              element={<ProductsPage products={products} />}
-            />
-            <Route path="/payment" element={<PaymentPage />} />
-          </Routes>
+          <AnimatedRoutes />
           <CartDrawer />
         </Box>
       </Router>
