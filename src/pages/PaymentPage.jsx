@@ -1,108 +1,68 @@
-import {
-  Box,
-  Text,
-  Flex,
-  Button,
-  Input,
-  Stack,
-  FormControl,
-  FormLabel,
-} from "@chakra-ui/react";
 import { useState } from "react";
+import { Box, Stepper, Flex, Button } from "@chakra-ui/react";
+import { OrderSummary } from "../components/payment/OrderSummary";
+import { ShippingInfo } from "../components/payment/ShippingInfo";
+import { PaymentMethod } from "../components/payment/PaymentMethod";
+import { OrderConfirmation } from "../components/payment/OrderConfirmation";
+import { CustomStep } from "../components/payment/CustomStep";
+
+const steps = [
+  { title: "Resumen", description: "Revisa tu pedido" },
+  { title: "Envío", description: "Datos de envío" },
+  { title: "Pago", description: "Método de pago" },
+  { title: "Confirmación", description: "Finalizar pedido" },
+];
+
+const stepComponents = [
+  OrderSummary,
+  ShippingInfo,
+  PaymentMethod,
+  OrderConfirmation,
+];
 
 export const PaymentPage = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    address: "",
-    cardNumber: "",
-    expirationDate: "",
-    cvv: "",
-  });
+  const [activeStep, setActiveStep] = useState(0);
+  const StepContent = stepComponents[activeStep];
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Aquí va la lógica para procesar el pago
-    console.log("Processing payment for:", formData);
-  };
+  const handleNext = () =>
+    activeStep < steps.length - 1 && setActiveStep((prev) => prev + 1);
+  const handlePrev = () => activeStep > 0 && setActiveStep((prev) => prev - 1);
 
   return (
-    <Box padding={4}>
-      <Text fontSize="2xl" mb={4}>
-        Proceso de Pago
-      </Text>
-      <form onSubmit={handleSubmit}>
-        <Stack spacing={4}>
-          <FormControl isRequired>
-            <FormLabel>Nombre</FormLabel>
-            <Input
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Ingrese su nombre"
-            />
-          </FormControl>
-          <FormControl isRequired>
-            <FormLabel>Email</FormLabel>
-            <Input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Ingrese su email"
-            />
-          </FormControl>
-          <FormControl isRequired>
-            <FormLabel>Dirección</FormLabel>
-            <Input
-              name="address"
-              value={formData.address}
-              onChange={handleChange}
-              placeholder="Ingrese su dirección"
-            />
-          </FormControl>
-          <FormControl isRequired>
-            <FormLabel>Número de tarjeta</FormLabel>
-            <Input
-              name="cardNumber"
-              value={formData.cardNumber}
-              onChange={handleChange}
-              placeholder="Ingrese el número de tarjeta"
-            />
-          </FormControl>
-          <Flex justifyContent="space-between">
-            <FormControl isRequired>
-              <FormLabel>Fecha de expiración</FormLabel>
-              <Input
-                name="expirationDate"
-                value={formData.expirationDate}
-                onChange={handleChange}
-                placeholder="MM/AA"
-              />
-            </FormControl>
-            <FormControl isRequired>
-              <FormLabel>CVV</FormLabel>
-              <Input
-                name="cvv"
-                value={formData.cvv}
-                onChange={handleChange}
-                placeholder="CVV"
-              />
-            </FormControl>
-          </Flex>
-          <Button type="submit" colorScheme="teal">
-            Pagar
+    <Flex
+      direction="column"
+      padding={4}
+      overflow="auto"
+      minH="calc(100vh - 72px)">
+      <Stepper index={activeStep} marginBottom={6}>
+        {steps.map((step, index) => (
+          <CustomStep
+            key={index}
+            title={step.title}
+            description={step.description}
+          />
+        ))}
+      </Stepper>
+      <Box flex="1">
+        <StepContent />
+      </Box>
+      {activeStep !== 3 && (
+        <Flex w="100%" justifyContent="space-between" gap={3}>
+          <Button
+            onClick={handlePrev}
+            isDisabled={activeStep === 0}
+            variant="outline"
+            flex={1}>
+            Anterior
           </Button>
-        </Stack>
-      </form>
-    </Box>
+          <Button
+            onClick={handleNext}
+            isDisabled={activeStep === steps.length - 1}
+            flex={1}>
+            {activeStep === steps.length - 2 ? "Finalizar" : "Siguiente"}
+          </Button>
+        </Flex>
+      )}
+    </Flex>
   );
 };
