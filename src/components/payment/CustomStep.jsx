@@ -1,34 +1,40 @@
 import PropTypes from "prop-types";
 import {
-  Box,
   Step,
   StepIndicator,
   StepStatus,
   StepIcon,
   StepNumber,
   StepTitle,
-  StepDescription,
   StepSeparator,
 } from "@chakra-ui/react";
 
-export const CustomStep = ({ title, description }) => (
-  <Step>
-    <StepIndicator>
-      <StepStatus
-        complete={<StepIcon />}
-        incomplete={<StepNumber />}
-        active={<StepNumber />}
-      />
-    </StepIndicator>
-    <Box flexShrink="0">
+export const CustomStep = ({ title }) => (
+  <>
+    <Step display={{ base: "flex", lg: "none" }} gap={3}>
+      <StepIndicator>
+        <StepStatus
+          complete={<StepIcon />}
+          incomplete={<StepNumber />}
+          active={<StepNumber />}
+        />
+      </StepIndicator>
+      <StepSeparator _horizontal={{ ml: "0" }} />
+    </Step>
+    <Step display={{ base: "none", lg: "flex" }}>
+      <StepIndicator>
+        <StepStatus
+          complete={<StepIcon />}
+          incomplete={<StepNumber />}
+          active={<StepNumber />}
+        />
+      </StepIndicator>
       <StepTitle>{title}</StepTitle>
-      <StepDescription>{description}</StepDescription>
-    </Box>
-    <StepSeparator />
-  </Step>
+      <StepSeparator />
+    </Step>
+  </>
 );
 
 CustomStep.propTypes = {
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
 };

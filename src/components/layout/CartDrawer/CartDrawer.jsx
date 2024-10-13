@@ -76,7 +76,7 @@ export const CartDrawer = () => {
       isOpen={isCartOpen}
       placement="right"
       onClose={toggleCartDrawer}
-      size="md">
+      size={{ base: "md", md: "lg" }}>
       <DrawerOverlay />
       <DrawerCloseButton />
       <DrawerContent bg="background.light">

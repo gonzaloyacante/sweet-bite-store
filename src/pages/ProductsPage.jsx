@@ -7,7 +7,7 @@ import { ProductCard } from "../components/ui/ProductCard";
 import useCart from "../hooks/useCart";
 import { Pagination } from "../components/ui/Pagination";
 
-const ITEMS_PER_PAGE = 10; // Número de productos por página
+const ITEMS_PER_PAGE = 10;
 
 export const ProductsPage = ({ products }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -30,7 +30,6 @@ export const ProductsPage = ({ products }) => {
       return sortMethods[sortOption] ? sortMethods[sortOption](a, b) : 0;
     });
 
-  // Calcular los productos que se mostrarán en la página actual
   const currentProducts = filteredProducts.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
@@ -59,7 +58,6 @@ export const ProductsPage = ({ products }) => {
         ))}
       </Grid>
 
-      {/* Paginación */}
       <Box display="flex" justifyContent="center" mt={4}>
         <Pagination
           currentPage={currentPage}

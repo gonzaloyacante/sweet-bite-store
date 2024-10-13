@@ -1,45 +1,56 @@
 import {
   VStack,
-  Heading,
+  HStack,
   FormControl,
   FormLabel,
   Input,
-  Select,
-  HStack,
+  Checkbox,
 } from "@chakra-ui/react";
 
 export const ShippingInfo = () => {
   return (
-    <VStack spacing={4} align="stretch">
-      <Heading as="h4" size="md" textAlign="center" mb={4}>
-        Información de Envío
-      </Heading>
+    <VStack spacing={3}px={3}>
+      <HStack w="100%" gap={4}>
+        <FormControl isRequired>
+          <FormLabel>Nombre</FormLabel>
+          <Input placeholder="Nombre/s" />
+        </FormControl>
+        <FormControl isRequired>
+          <FormLabel>Apellido</FormLabel>
+          <Input placeholder="Apellido/s" />
+        </FormControl>
+      </HStack>
       <FormControl isRequired>
-        <FormLabel>Nombre completo</FormLabel>
-        <Input placeholder="Nombre completo" />
+        <FormLabel>Correo Electrónico</FormLabel>
+        <Input type="email" placeholder="ejemplo@gmail.com" />
       </FormControl>
       <FormControl isRequired>
         <FormLabel>Dirección</FormLabel>
         <Input placeholder="Dirección" />
       </FormControl>
-      <HStack>
+      <HStack w="100%" gap={4}>
         <FormControl isRequired>
           <FormLabel>Ciudad</FormLabel>
           <Input placeholder="Ciudad" />
         </FormControl>
         <FormControl isRequired>
+          <FormLabel>Estado/Provincia</FormLabel>
+          <Input placeholder="Estado/Provincia" />
+        </FormControl>
+      </HStack>
+      <HStack w="100%" gap={4}>
+        <FormControl isRequired>
           <FormLabel>Código Postal</FormLabel>
           <Input placeholder="Código Postal" />
         </FormControl>
+        <FormControl isRequired>
+          <FormLabel>Número de Teléfono</FormLabel>
+          <Input placeholder="+1 (555) 000-0000" />
+        </FormControl>
       </HStack>
-      <FormControl isRequired>
-        <FormLabel>País</FormLabel>
-        <Select placeholder="Selecciona un país">
-          <option value="argentina">Argentina</option>
-          <option value="chile">Chile</option>
-          <option value="mexico">México</option>
-        </Select>
-      </FormControl>
+      <Checkbox colorScheme="primary">
+        Mi dirección de facturación y envío son las mismas
+      </Checkbox>
     </VStack>
   );
 };

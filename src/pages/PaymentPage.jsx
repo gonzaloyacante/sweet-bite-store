@@ -1,22 +1,29 @@
 import { useState } from "react";
-import { Box, Stepper, Flex, Button } from "@chakra-ui/react";
-import { OrderSummary } from "../components/payment/OrderSummary";
-import { ShippingInfo } from "../components/payment/ShippingInfo";
+import { Stepper, Flex, Button } from "@chakra-ui/react";
+import { ShippingInfo } from "../components/payment/ShippingInfo.jsx";
+import { ShippingMethod } from "../components/payment/ShippingMethod";
 import { PaymentMethod } from "../components/payment/PaymentMethod";
+import { OrderReview } from "../components/payment/OrderReview.jsx";
 import { OrderConfirmation } from "../components/payment/OrderConfirmation";
 import { CustomStep } from "../components/payment/CustomStep";
+import { ActiveStep } from "../components/payment/ActiveStep";
 
 const steps = [
-  { title: "Resumen", description: "Revisa tu pedido" },
-  { title: "Envío", description: "Datos de envío" },
-  { title: "Pago", description: "Método de pago" },
-  { title: "Confirmación", description: "Finalizar pedido" },
+  {
+    title: "Información de envío",
+    description: "Ingresa tus datos para realizar el envío",
+  },
+  { title: "Método de envío", description: "Selecciona una opción de envío" },
+  { title: "Método de pago", description: "Selecciona el método de pago" },
+  { title: "Revisión del pedido", description: "Revisa tu pedido" },
+  { title: "Confirmación", description: "Confirma tu orden" },
 ];
 
 const stepComponents = [
-  OrderSummary,
   ShippingInfo,
+  ShippingMethod,
   PaymentMethod,
+  OrderReview,
   OrderConfirmation,
 ];
 
@@ -25,29 +32,33 @@ export const PaymentPage = () => {
   const StepContent = stepComponents[activeStep];
 
   const handleNext = () =>
-    activeStep < steps.length - 1 && setActiveStep((prev) => prev + 1);
-  const handlePrev = () => activeStep > 0 && setActiveStep((prev) => prev - 1);
+    setActiveStep((prev) => Math.min(prev + 1, steps.length - 1));
+  const handlePrev = () => setActiveStep((prev) => Math.max(prev - 1, 0));
 
   return (
     <Flex
-      direction="column"
       padding={4}
-      overflow="auto"
-      minH="calc(100vh - 72px)">
-      <Stepper index={activeStep} marginBottom={6}>
+      alignItems="center"
+      justifyContent="center"
+      direction="column"
+      minH="calc(100vh - 72px)"
+      maxW="1200px"
+      mx="auto"
+      gap={6}>
+      <Stepper index={activeStep} width="full" size="lg" colorScheme="primary">
         {steps.map((step, index) => (
-          <CustomStep
-            key={index}
-            title={step.title}
-            description={step.description}
-          />
+          <CustomStep key={index} title={step.title} />
         ))}
       </Stepper>
-      <Box flex="1">
-        <StepContent />
-      </Box>
-      {activeStep !== 3 && (
-        <Flex w="100%" justifyContent="space-between" gap={3}>
+      <ActiveStep
+        activeStep={activeStep}
+        handleNext={handleNext}
+        handlePrev={handlePrev}
+        StepContent={StepContent}
+        stepDescription={steps[activeStep].description}
+      />
+      {activeStep < 4 && (
+        <Flex w="100%" gap={4}>
           <Button
             onClick={handlePrev}
             isDisabled={activeStep === 0}
@@ -55,11 +66,8 @@ export const PaymentPage = () => {
             flex={1}>
             Anterior
           </Button>
-          <Button
-            onClick={handleNext}
-            isDisabled={activeStep === steps.length - 1}
-            flex={1}>
-            {activeStep === steps.length - 2 ? "Finalizar" : "Siguiente"}
+          <Button flex={1} onClick={handleNext}>
+            {activeStep === 3 ? "Finalizar" : "Siguiente"}
           </Button>
         </Flex>
       )}
