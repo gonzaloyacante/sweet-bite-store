@@ -54,16 +54,20 @@ export const Header = () => {
       boxShadow="lg">
       <Flex justify="space-between" align="center" w="100%">
         <Heading
-          as="h1"
-          size="lg"
+          as="h3"
+          size="md"
           cursor="pointer"
           color="primary.700"
           display="flex"
           alignItems="center"
           onClick={() => navigate("/")}>
-          <Image src={logo} alt="Logo" boxSize="36px" mr={4} /> Sweet Bite
+          <Image src={logo} alt="Logo" boxSize="32px" mr={4} /> Sweet Bite
         </Heading>
-        <Flex display={{ base: "none", md: "flex" }} spacing={4}>
+        <Flex
+          display={{ base: "none", md: "flex" }}
+          flex={1}
+          justifyContent="flex-end"
+          spacing={4}>
           <Button
             variant="ghost"
             color="primary.700"

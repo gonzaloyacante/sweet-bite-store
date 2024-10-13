@@ -1,5 +1,4 @@
 import { Flex, Box, Text, Image, Button } from "@chakra-ui/react";
-
 import { useNavigate } from "react-router-dom";
 
 export const MainSection = () => {
@@ -14,32 +13,32 @@ export const MainSection = () => {
       p={6}
       m={4}
       borderRadius="2xl"
-      bg="background.primary">
-      <Box>
-        <Text
-          fontSize="xx-large"
-          textAlign="center"
-          color="primary.700"
-          fontWeight="semibold">
+      bg="background.primary"
+      direction={{ base: "column", md: "row" }}>
+      <Box textAlign="center">
+        <Text fontSize={{base: "x-large", md: "xx-large"}} color="primary.700" fontWeight="semibold">
           Deliciosos pasteles hechos con amor
         </Text>
-        <Text textAlign="center" color="primary.500">
+        <Text color="primary.500">
           Descubre nuestra selección de pasteles artesanales para cada ocasión
         </Text>
+        <Button
+          mt={4}
+          size={{ base: "md", md: "lg" }}
+          onClick={() => navigate("/products")}>
+          Ver productos
+        </Button>
       </Box>
 
       <Image
         src="https://i.ibb.co/nCMRzds/sweet-pastry-assortment-top-view.jpg"
         alt="Imagen principal"
         borderRadius="xl"
-        w="100%"
+        w={{ base: "100%", md: "50%" }}
         maxW={500}
         boxShadow="lg"
+        order={{ base: 2, md: 2 }}
       />
-
-      <Button mt={4} onClick={() => navigate("/products")}>
-        Ver productos
-      </Button>
     </Flex>
   );
 };
