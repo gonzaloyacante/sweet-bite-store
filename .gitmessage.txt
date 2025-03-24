@@ -1,3 +1,8 @@
+feat/fix/docs: título breve
+
+- Qué cambió
+- Por qué cambió
+
 tipo: título corto y descriptivo
 
 Descripción detallada:

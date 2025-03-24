@@ -8,7 +8,10 @@ const app = express();
 const port = config.port;
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:5173', 'https://sweet-bite.vercel.app'],
+  credentials: true
+}));
 
 routerApi(app);
 
