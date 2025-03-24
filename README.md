@@ -1,28 +1,84 @@
-# Sweet-Bite Store 🍰
+# Sweet-Bite 🍰
 
-Sweet-Bite es una tienda online de pastelería creada con [Vite](https://vitejs.dev/), [ReactJS](https://reactjs.org/) y [Chakra UI](https://chakra-ui.com/). Nuestra misión es endulzar tu vida con productos frescos y exquisitos, presentados en una plataforma atractiva y fácil de usar.
+Tienda online de pastelería desarrollada con React y Express.
 
-## Tecnologías utilizadas
+## Estructura del Proyecto
 
+El proyecto ahora está organizado en dos carpetas principales:
+- `frontend/`: Aplicación React (Vite + Chakra UI)
+- `backend/`: API REST (Express + MySQL)
+
+## Cambios Recientes
+
+- Reorganización del proyecto en frontend/backend
+- Implementación de la API REST
+- Configuración de base de datos MySQL
+
+## Estructura del Proyecto
+
+```
+sweet-bite/
+├── frontend/     # Aplicación React + Vite + Chakra UI
+│   ├── src/      # Código fuente del frontend
+│   ├── public/   # Archivos estáticos
+│   └── ...       # Configuraciones específicas del frontend
+└── backend/      # API REST con Express + MySQL
+    ├── src/      # Código fuente del backend
+    └── ...       # Configuraciones específicas del backend
+```
+
+## Tecnologías
+
+### Frontend
+
+- React 18
 - Vite
-- ReactJS
 - Chakra UI
-- JavaScript
+- React Router
+- React Icons
 
-## Instalación
+### Backend
 
-1. Clona este repositorio: `git clone https://github.com/tu_usuario/sweet-bite-store.git`
-2. Ve al directorio del proyecto: `cd sweet-bite`
-3. Instala las dependencias: `yarn install`
-4. Inicia la aplicación: `yarn dev`
+- Node.js
+- Express
+- MySQL
+- Passport JWT
+- Joi
 
-## Características
+## Inicio Rápido
 
-- Catálogo de productos de pastelería.
-- Visualización de precios y detalles de cada producto.
-- Diseño moderno y responsivo utilizando Chakra UI.
+1. Instalar dependencias:
 
-## Próximas mejoras
+```bash
+# Frontend
+cd frontend
+yarn install
 
-- Implementación de carrito de compras.
-- Pasarela de pagos.
+# Backend
+cd backend
+yarn install
+```
+
+2. Configurar variables de entorno:
+
+```bash
+# Backend
+cp backend/.env.example backend/.env
+# Editar backend/.env con tus configuraciones
+```
+
+3. Iniciar en desarrollo:
+
+```bash
+# Frontend - http://localhost:5173
+cd frontend
+yarn dev
+
+# Backend - http://localhost:3000
+cd backend
+yarn dev
+```
+
+## Licencia
+
+Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.

@@ -1,0 +1,14 @@
+{
+  "testEnvironment": "node",
+  "transform": {
+    "^.+\\.js$": "babel-jest"
+  },
+  "moduleFileExtensions": ["js"],
+  "coverageDirectory": "coverage",
+  "collectCoverageFrom": [
+    "src/**/*.js",
+    "!src/db/migrations/**",
+    "!src/db/seeders/**"
+  ],
+  "verbose": true
+}
