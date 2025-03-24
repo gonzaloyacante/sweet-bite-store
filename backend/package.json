@@ -5,11 +5,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "node index.js",
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
     "lint": "eslint src/",
-    "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "test": "jest",
+    "build": "node src/db/migrations/index.js && npm run lint",
     "migrate": "node src/db/migrations/index.js",
     "seed": "node src/db/seeders/index.js"
   },

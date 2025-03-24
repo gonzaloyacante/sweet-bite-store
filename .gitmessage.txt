@@ -1,0 +1,15 @@
+tipo: título corto y descriptivo
+
+Descripción detallada:
+- ¿Qué cambió?
+- ¿Por qué cambió?
+- ¿Hay breaking changes?
+
+# Tipos de commit permitidos:
+# feat:     Nueva funcionalidad
+# fix:      Corrección de bug
+# docs:     Cambios en documentación
+# style:    Cambios de formato
+# refactor: Refactorización de código
+# test:     Cambios en tests
+# chore:    Cambios en build/configs

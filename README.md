@@ -5,6 +5,7 @@ Tienda online de pastelería desarrollada con React y Express.
 ## Estructura del Proyecto
 
 El proyecto ahora está organizado en dos carpetas principales:
+
 - `frontend/`: Aplicación React (Vite + Chakra UI)
 - `backend/`: API REST (Express + MySQL)
 
