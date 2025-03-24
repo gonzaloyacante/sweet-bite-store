@@ -7,6 +7,12 @@
 **/.env.local
 **/.env.*.local
 
+# Environment files
+frontend/.env*
+backend/.env*
+!frontend/.env.example
+!backend/.env.example
+
 # Logs
 **/logs
 **/*.log
