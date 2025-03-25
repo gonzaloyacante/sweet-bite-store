@@ -25,18 +25,11 @@ const whitelist = [
   'http://localhost:5173',
   'http://localhost:3000',
   'https://sweet-bite-store.vercel.app',
-  'https://sweet-bite-store-*.vercel.app',
 ];
 
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin || whitelist.some((domain) => origin.includes(domain))) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
+    origin: whitelist,
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
