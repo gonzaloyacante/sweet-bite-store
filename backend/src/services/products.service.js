@@ -36,7 +36,7 @@ export class ProductsService extends BaseService {
         price: 3000,
         description: 'Clásica torta Red Velvet con frosting de queso crema',
         categoryId: 1,
-        image: 'https://images.unsplash.com/photo-1586788680399-2055a72e7839',
+        image: 'https://images.unsplash.com/photo-1586788680399-2055a72e7889',
       },
       {
         id: 5,
