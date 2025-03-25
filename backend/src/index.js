@@ -20,12 +20,12 @@ app.get('/', (_, res) => {
   res.json({ message: 'API is running' });
 });
 
-// Configuración mejorada de CORS
-const whitelist = [
-  'http://localhost:5173',
-  'http://localhost:3000',
-  'https://sweet-bite-store.vercel.app',
-];
+// // Configuración mejorada de CORS
+// const whitelist = [
+//   'http://localhost:5173',
+//   'http://localhost:3000',
+//   'https://sweet-bite-store.vercel.app',
+// ];
 
 app.use(
   cors({

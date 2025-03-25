@@ -1,10 +1,10 @@
 [build]
-builder = "nixpacks"
+builder = "nixpacks"     # Usa nixpacks para construir la aplicación Node.js
 
 [deploy]
-startCommand = "yarn start"
-healthcheckPath = "/api/health"
-restartPolicyType = "on_failure"
+startCommand = "yarn start"             # Ejecuta el comando definido en package.json del backend
+healthcheckPath = "/api/health"         # Verifica que la API esté funcionando
+restartPolicyType = "on_failure"        # Reinicia el servicio si falla
 
 [service]
-port = 8080
+port = 8080                            # Puerto que Railway asigna en producción
