@@ -1,0 +1,10 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "yarn start"
+healthcheckPath = "/api/health"
+restartPolicyType = "on_failure"
+
+[service]
+port = 3000

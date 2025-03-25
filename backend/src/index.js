@@ -10,6 +10,11 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// Health check primero
+app.get('/api/health', (_, res) => {
+  res.json({ status: 'OK', environment: config.env });
+});
+
 // Ruta de prueba para verificar el servidor
 app.get('/', (_, res) => {
   res.json({ message: 'API is running' });
@@ -37,11 +42,6 @@ app.use(
     allowedHeaders: ['Content-Type', 'Authorization'],
   })
 );
-
-// Health check para Vercel
-app.get('/api/health', (_, res) => {
-  res.json({ status: 'OK', environment: config.env });
-});
 
 routerApi(app);
 

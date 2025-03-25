@@ -8,10 +8,7 @@
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
     "lint": "eslint src/",
-    "test": "jest --passWithNoTests",
-    "build": "node src/db/migrations/index.js && npm run lint",
-    "migrate": "node src/db/migrations/index.js",
-    "seed": "node src/db/seeders/index.js"
+    "test": "jest --passWithNoTests"
   },
   "dependencies": {
     "@hapi/boom": "^10.0.1",

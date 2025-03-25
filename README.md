@@ -78,29 +78,6 @@ yarn dev
 cd backend
 yarn dev
 ```
-
-## Despliegue
-
-### Frontend (Vercel + GitHub)
-
-1. Conectar el repositorio en Vercel Dashboard
-2. Framework preset: Vite
-3. Root directory: frontend
-4. Build command: yarn build
-5. Output directory: dist
-6. Variables de entorno:
-   - VITE_API_URL=https://sweet-bite-api.railway.app/api/v1
-
-### Backend (Railway + GitHub)
-
-1. Conectar el repositorio en Railway Dashboard
-2. Root directory: backend
-3. Start command: yarn start
-4. Variables de entorno:
-   - NODE_ENV=production
-   - CORS_ORIGINS=https://sweet-bite-store.vercel.app
-   - DATABASE_URL=(proporcionado por Railway)
-
 ## Licencia
 
 Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
